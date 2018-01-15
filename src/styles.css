@@ -1,0 +1,49 @@
+@import "https://fonts.googleapis.com/css?family=Material+Icons";
+@import "https://fonts.googleapis.com/css?family=Roboto:400,300";
+
+html, body {
+  display: flex;
+  flex-direction: column;
+
+  font-family: Roboto, Arial, sans-serif;
+  margin: 0;
+  height: 100%;
+}
+
+.mat-table {
+    overflow: auto;
+    max-height: 500px;
+}
+
+.mat-header-row {
+    position: sticky;
+    top: 0;
+    background: #424242;
+  }
+
+  .mat-card-header-text {
+      margin: 0 !important;
+  }
+
+  .form {
+    min-width: 150px;
+    max-width: 500px;
+    width: 100%;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+
+  .mat-column-askPrice {
+    word-wrap: normal !important;
+  }
+  
+  .mat-column-priceChangePercent {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  .mat-sidenav {
+      /* margin-top: 12px; */
+  }

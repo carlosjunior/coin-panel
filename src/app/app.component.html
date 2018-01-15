@@ -1,0 +1,157 @@
+<div fxLayout="column" fxFlex>
+
+  <mat-sidenav-container fxFlex>
+    <mat-sidenav mode="side" opened position="end">
+      <mat-table #table [dataSource]="dataSource" matSort matSortActive="order" matSortDirection="asc">
+
+        <ng-container matColumnDef="symbol">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Símbolo </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.symbol}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="askPrice">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Preço </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.askPrice}} </mat-cell>
+        </ng-container>
+
+        <ng-container matColumnDef="priceChangePercent">
+          <mat-header-cell *matHeaderCellDef mat-sort-header> Variação </mat-header-cell>
+          <mat-cell *matCellDef="let element"> {{element.priceChangePercent}}%</mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+      </mat-table>
+
+    </mat-sidenav>
+
+    <div fxLayout="row" fxLayout.sm="column">
+
+      <div class="content" fxLayout="column" fxLayout.sm="row" fxLayoutGap="8px">
+
+        <mat-card fxFlex>
+          <mat-card-header>
+            <mat-card-title>Carteira</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{walletBTC}} BTC</h2>
+            <h4>R${{walletBRL}}</h4>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card fxFlex>
+          <mat-card-header>
+            <mat-card-title>Lucro</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <h2>{{ profitBTC }} BTC</h2>
+            <h4>R${{profitBRL}}</h4>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card fxFlex>
+          <mat-card-header>
+            <mat-card-title>Conversão</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form>
+              <mat-form-field>
+                <input matInput placeholder="Valor">
+                <span matSuffix>%</span>
+              </mat-form-field>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+      <div fxFlex="75" class="content" fxLayout="column" fxLayout.sm="row" fxLayoutGap="8px">
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Trade - RXPBTC</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+
+            <form class="form">
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field>
+                      <input matInput placeholder="Percentual de lucro" type="number">
+                      <span matPrefix>$&nbsp;</span>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field>
+                      <input matInput placeholder="Compra" type="number">
+                      <span matPrefix>$&nbsp;</span>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field>
+                      <input matInput placeholder="Venda" type="number">
+                      <span matPrefix>$&nbsp;</span>
+                    </mat-form-field>
+                  </td>
+                </tr>
+
+              </table>
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <mat-form-field>
+                      <input matInput placeholder="Qtd Compra" type="number">
+                      <span matPrefix>$&nbsp;</span>
+                    </mat-form-field>
+                  </td>
+                  <td>
+                    <mat-form-field>
+                      <input matInput placeholder="Qts Venda" type="number">
+                      <span matPrefix>$&nbsp;</span>
+                    </mat-form-field>
+                  </td>
+                </tr>
+              </table>
+              &nbsp;
+              <table class="full-width" cellspacing="0">
+                <tr>
+                  <td>
+                    <label>Porcentagem: 5%</label>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <label>Valor: R$22,00</label>
+                  </td>
+                </tr>
+              </table>
+            </form>
+          </mat-card-content>
+          <mat-card-actions align="end">
+            <button mat-button>SALVAR</button>
+          </mat-card-actions>
+        </mat-card>
+
+        <mat-card>
+          <mat-card-header>
+            <mat-card-title>Registros</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+
+          </mat-card-content>
+        </mat-card>
+      </div>
+
+    </div>
+
+  </mat-sidenav-container>
+
+  <button mat-fab (click)="openAdminDialog()" class="fab-bottom-right">
+    <mat-icon>add</mat-icon>
+  </button>
+
+</div>
