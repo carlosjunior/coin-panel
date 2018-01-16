@@ -25,7 +25,7 @@ export class AppComponent {
 
   mercadoBitcoinBaseApi = 'https://www.mercadobitcoin.net/api/';
   binanceBaseApi = 'https://api.binance.com/api/v1/ticker/24hr?symbol=';
-  
+
   coinsParams = [
     {symbol: 'BTCUSDT', order: 1},
     {symbol: 'TRXBTC', order: 2},
@@ -52,16 +52,14 @@ export class AppComponent {
   }
 
   ngOnInit() {
-    let coinsList: Coin[] = [];
+    const coinsList: Coin[] = [];
 
-    setInterval(() => {
+    // setInterval(() => {
       this.coinsList = [];
 
-      console.log(this.coinsParams);
-
       this.http.get(this.mercadoBitcoinBaseApi + 'BTC' + '/ticker/').subscribe(response => {
-        let data = response.json();
-        
+        const data = response.json();
+
         data.order = 0;
         data.symbol = 'BTCBRL';
         data.askPrice = data.ticker.last;
@@ -70,23 +68,23 @@ export class AppComponent {
         this.btcBRL = data.askPrice;
         this.calculateWallet(this.btcBRL);
         this.calculateProfit();
-        
+
         this.coinsList.push(data);
-        this.dataSource.data = this.coinsList.sort();    
-      })
+        this.dataSource.data = this.coinsList.sort();
+      });
 
       for (const coin of this.coinsParams) {
         this.http.get(this.binanceBaseApi + coin.symbol).subscribe(response => {
-          let data = response.json();
+          const data = response.json();
           data.order = coin.order;
           this.coinsList.push(data);
-          this.dataSource.data = this.coinsList.sort();    
-        })
+          this.dataSource.data = this.coinsList.sort();
+        });
       }
 
       // console.log(this.coinsList);
 
-    }, 10000);
+    // }, 10000);
   }
 
   ngAfterViewInit() {
@@ -94,12 +92,12 @@ export class AppComponent {
   }
 
   calculateWallet(value: number) {
-    this.walletBRL = value*this.walletBTC;
+    this.walletBRL = value * this.walletBTC;
   }
 
   calculateProfit() {
-    this.profitBTC = this.walletBTC-this.investmentBTC;
-    this.profitBRL = this.walletBRL-this.investmentBRL;
+    this.profitBTC = this.walletBTC - this.investmentBTC;
+    this.profitBRL = this.walletBRL - this.investmentBRL;
   }
 
   openAdminDialog() {
